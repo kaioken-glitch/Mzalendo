@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mzalendo</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="shortcut icon" href="./assets/favIcon.svg" type="image/x-icon">
+</head>
+<body>
+    <div class="main">
+        <div class="logoDiv">
+            <div class="logo">
+                <img src="./assets/logo.svg" alt="Mzalendo Logo">
+            </div>
+
+            <div class="searchDiv">
+                <input type="text" placeholder="Search...">
+                <button class="searchButton">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="blogBody">
+            <div class="blogControls">
+                <div class="addBlog">
+                    <div class="addTitle">
+                        <h2>Add New Post</h2>
+                        <i class="fa-solid fa-circle-plus" id="plusHeight"></i>
+                    </div>
+                    <div class="addBlogForm">
+                        <input type="text" id="blogTitle" placeholder="Blog Title">
+                        <input type="text" id="blogAuthor" placeholder="Author Name">
+                        <input type="text" name="blogImage" id="blogImage" placeholder="Image URL">
+                        <textarea id="blogContent" placeholder="Write your blog content here..."></textarea>
+                        <button id="submitBlog">Submit</button>
+                    </div>
+                </div>
+
+                <div class="blogsCreated">
+                    <div class="postInform">
+                        <h2>Blog Posts</h2>
+                        <p id="createdCounter">0 Posts</p>
+                    </div>
+                    <ul class="postList">
+                        <li class="postMade">
+                            <h3>Blog Title</h3>
+                            <p>400 Words</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="blogCreatedPost">
+                <div class="createdPostHead">
+                    <div class="headDetails">
+                        <h2 id="postedBlogTitle">Blog Title</h2>
+                        <h3 id="postedBlogAuthor">Blog Author</h3>
+                        <p id="blogPostedDate">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            08.2025
+                        </p>
+                    </div>
+
+                    <div class="blogContnetControl">
+                        <button id="editPost" class="edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            Edit
+                        </button>
+                        <button id="deletePost" class="delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="blogPostedImage">
+                    <img src="" alt="">
+                </div>
+                <div class="postedBlogBody">
+                    <p id="blogContentBody"></p>
+                </div>
+                <div class="timeStamp">
+                    <i class="fa-regular fa-clock"></i>
+                    <p id="timePassed">3hours ago</p>
+                </div>
+                <div class="hiddenActionButtons">
+                    <button id="saveedit" class="save">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save
+                    </button>
+                    <button id="cancelEdit" class="cancel">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Cancel
+                    </button>
+                </div>
+                <div class="postInteractions">
+                    <div class="viewCount">
+                        <i class="fa-solid fa-eye"></i>
+                        <p id="views">3000</p>
+                    </div>
+                    <button id="like">
+                        <i class="fa-solid fa-thumbs-up fa-shake"></i>
+                        <p id="likeCount">500</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script/index.js"></script>
+    <script src="https://kit.fontawesome.com/826c469fe7.js" crossorigin="anonymous"></script>
+</body>
+</html>

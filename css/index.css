@@ -1,0 +1,613 @@
+::-webkit-scrollbar {
+    width: 3px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 255, 0);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ffffff00;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+}
+
+:root {
+    --bg: #EEEFE0;
+    --accent: #D1D8BE;
+    --headings: #819A91;
+    --subheadings: #A7C1A8;
+    --pale-headings: #819a9170;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    font-family: 'Poppins', sans-serif;
+}
+
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--bg);
+}
+
+.logoDiv {
+    width: 96%;
+    height: 70px;
+    display: flex;
+    position: relative;
+    padding-left: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    border-bottom: 1px solid var(--headings);
+}
+
+.logo{
+    width: 120px;
+    height: 100%;
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 120%;
+    height: auto;
+}
+
+.searchDiv {
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchDiv input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    user-select: none;
+    border-radius: 8px 0 0 8px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--subheadings);
+}
+
+.searchDiv .searchButton {
+    width: 50px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 0 8px 8px 0;
+    background-color: var(--headings);
+}
+
+.searchDiv .searchButton i {
+    color: white;
+}
+
+.resultsDiv {    
+    top: 100%;               
+    left: 160px;        
+    width: 250px;
+    color: #222;
+    z-index: 1000;
+    padding: 16px;    
+    font-size: 1rem;  
+    min-height: 40px;         
+    margin-top: -15px;          
+    border-radius: 6px;
+    position: absolute; 
+    border: 1px solid #e0e0e0;
+    background-color: var(--bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.resultsDiv p{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    margin-top: 20px;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultItem{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    margin-top: 10px;
+    user-select: none;
+    border-radius: 12px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resultItem:hover {
+    cursor: pointer;
+    background-color: var(--accent);
+}
+
+.resultItemTitle {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 8px;
+    font-size: 0.98rem;
+}
+
+.resultItemButton {
+    width: 80px;
+    height: 32px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    color: var(--bg);
+    font-weight: 550;
+    margin-right: 5px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    align-items: center;
+    font-family: inherit;
+    justify-content: center;
+    transition: background 0.2s;
+    background-color: var(--accent);
+    border: 1px solid var(--headings);
+}
+
+.resultItemButton i {
+    color: var(--bg);
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+.resultItemButton:hover {
+    color: #222;
+    background-color: var(--headings);
+}
+
+
+
+.blogBody{
+    width: 100%;
+    height: 672px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: var(--bg);
+}
+
+.blogControl{
+    width: 250px;
+    height: 672px;
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.addBlog{
+    width: 250px;
+    height: 50px;
+    display: flex;
+    overflow: hidden;  
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+}
+
+.addBlog.active{
+    height: 300px;
+}
+
+.addTitle{
+    width: 250px;
+    height: 50px;
+    display: flex; 
+    margin-bottom: 10px; 
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--headings);
+}
+
+.addBlogForm{
+    gap: 10px;
+    width: 250px;
+    height: 250px;
+    display: flex;  
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#plusHeight.active{
+    transform: rotate(45deg);
+    transition: all 0.3s ease-in-out;
+}
+
+.addBlogForm input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    text-indent: 5px;
+    user-select: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--subheadings);
+}
+
+.addBlogForm textarea{
+    width: 90%;
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-indent: 5px;
+    user-select: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--subheadings);
+}
+
+.addBlogForm button{
+    width: 50%;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--bg);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--headings);
+    transition: background 0.3s;
+}
+
+.addBlogForm button:hover{
+    color: var(--headings);
+    background-color: var(--accent);
+}
+
+.blogsCreated{
+    width: 250px;
+    height: 300px;
+    display: flex;
+    overflow: hidden;
+    overflow-y: auto;  
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.postInform{
+    width: 250px;
+    height: 50px;
+    display: flex; 
+    user-select: none;
+    margin-bottom: 10px; 
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--headings);
+}
+
+.postList{
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    height: 250px;
+    display: flex; 
+    border-radius: 6px; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.postMade{
+    width: 245px;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    user-select: none; 
+    border-radius: 8px;
+    margin-bottom: 10px; 
+    align-items: center;
+    flex-direction: row;
+    color: var(--headings);
+    justify-content: center;
+    background-color: var(--accent);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.postMade:hover {
+    color: var(--bg);
+    background-color: var(--subheadings);
+}
+
+.postMade.active{
+    background-color: var(--headings);
+}
+
+.postMade h3 {
+    margin: 0;
+    margin-left: 10px;
+    margin-right: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 140px; /* Adjust as needed for your layout */
+}
+
+.postMade p{
+    margin: 0;
+    margin-right: 10px;
+}
+
+
+.blogCreatedPost{
+    width: 840px;
+    height: 640px;
+    display: flex;
+    overflow-y: auto;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    border: 1px solid var(--pale-headings);
+}
+
+.createdPostHead{
+    width: 97%;
+    height: 100px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--pale-headings);
+}
+
+#postedBlogTitle{
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+}
+
+#postedBlogAuthor{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+#blogPostedDate{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.blogContnetControl{
+    width: 220px;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.edit{
+    width: 70px;
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    transition: all .3s ease;
+    background-color: var(--bg);
+    border: 1px solid var(--pale-headings);
+}
+
+.edit:hover{
+    color: var(--accent);
+    background-color: rgb(1, 117, 11);
+}
+
+.delete{
+    width: 70px;
+    height: 30px;
+    display: flex;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    transition: all .3s ease;
+    background-color: var(--bg);
+    border: 1px solid var(--pale-headings);
+}
+
+.delete:hover{
+    color: var(--accent);
+    background-color: red;
+}
+
+.edit i, .delete i{
+    margin-right: 5px;
+}
+
+.blogPostedImage{
+    width: 97%;
+    height: 500px;
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid var(--pale-headings);
+}
+
+.blogPostedImage img{
+    width: 100%;
+    height: 100%;
+    border-radius: 6px 6px 0 0;
+}
+
+.postedBlogBody{
+    width: 97%;
+    height: 500px;
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 20px;
+    overflow-y: auto;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeStamp{
+    width: 97%;
+    height: 24px;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: end;
+}
+
+#timePassed{
+    margin-left: 6px;
+}
+
+.timestamp i{
+    color: var(--headings);
+}
+
+.hiddenActionButtons{
+    width: 97%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.save, .cancel{
+    width: 70px;
+    height: 30px;
+    display: flex;
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    user-select: none;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    transition: all .3s ease;
+    background-color: var(--bg);
+    border: 1px solid var(--pale-headings);
+}
+
+.save{
+    margin-left: auto;
+}
+
+.cancel{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.save:hover{
+    color: var(--accent);
+    background-color: rgb(1, 117, 11);   
+}
+
+.cancel:hover{
+    color: var(--accent);
+    background-color: red;
+}
+
+.cancel i, .save i{
+    margin-right: 5px;
+}
+
+.postInteractions{
+    width: 230px;
+    height: 60px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 40px;
+    justify-content: space-evenly;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.viewCount{
+    width: 70px;
+    height: 30px;
+    display: flex;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.viewCount i{
+    margin-right: 5px;
+}
+
+#like{
+    width: 70px;
+    height: 30px;
+    border: none;
+    outline: none;
+    display: flex;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--bg);
+}
+
+#like i{
+    margin-right: 8px;
+}
