@@ -82,7 +82,7 @@ body {
     user-select: none;
     border-radius: 8px 0 0 8px;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--subheadings);
+    background-color: var(--accent);
 }
 
 .searchDiv .searchButton {
@@ -203,6 +203,7 @@ body {
     width: 250px;
     height: 672px;
     display: flex;
+    flex-shrink: 0;
     padding-top: 10px;
     align-items: center;
     justify-content: start;
@@ -213,6 +214,7 @@ body {
     width: 250px;
     height: 50px;
     display: flex;
+    flex-shrink: 0;
     overflow: hidden;  
     align-items: center;
     flex-direction: column;
@@ -298,6 +300,7 @@ body {
     width: 250px;
     height: 300px;
     display: flex;
+    flex-shrink: 0;
     overflow: hidden;
     overflow-y: auto;  
     align-items: center;
