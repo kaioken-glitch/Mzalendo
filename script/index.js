@@ -121,8 +121,10 @@ async function submitBlogPost(e) {
 
         if (response.ok) {
             alert('Blog post submitted!');
-            // Optionally, reset the form here
-            document.querySelector('.addBlogForm').reset();
+            document.getElementById('blogTitle').value = '';
+            document.getElementById('blogAuthor').value = '';
+            document.getElementById('blogImage').value = '';
+            document.getElementById('blogContent').value = '';
         } else {
             alert('Failed to submit blog post.');
         }
@@ -180,11 +182,17 @@ function setupLikeButton(post) {
     const likeBtn = document.getElementById('like');
     const likeCount = document.getElementById('likeCount');
     let liked = false;
+    likeBtn.classList.remove('active');
 
     likeBtn.onclick = async function() {
         liked = !liked;
         let newLikes = (post.likes || 0) + (liked ? 1 : -1);
         if (newLikes < 0) newLikes = 0;
+        if (liked) {
+            likeBtn.classList.add('active');
+        } else {
+            likeBtn.classList.remove('active');
+        }
         await fetch(`http://localhost:3000/postData/${post.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },

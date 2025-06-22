@@ -611,3 +611,11 @@ body {
 #like i{
     margin-right: 8px;
 }
+
+#like:hover{
+    color: blue;
+}
+
+#like.active{
+    color: blue;
+}
