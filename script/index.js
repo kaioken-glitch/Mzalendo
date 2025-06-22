@@ -1,7 +1,9 @@
 const searchDiv = document.querySelector('.searchDiv');
 
+//asynchronous function to toggle the results div and display search results
 async function showResults() {
     let resultsDiv = document.querySelector('.resultsDiv');
+    //creating the result div and appending it to search div
     if (!resultsDiv) {
         resultsDiv = document.createElement('div');
         resultsDiv.className = 'resultsDiv';
@@ -11,6 +13,7 @@ async function showResults() {
     const input = searchDiv.querySelector('input');
     const query = input.value.trim().toLowerCase();
 
+    //the search results when no input is in the search input 
     if (!query) {
         resultsDiv.innerHTML = `<p style="text-align:center; margin: 0; color: #888;">Nothing to See here!!!</p>`;
         return;
@@ -20,7 +23,7 @@ async function showResults() {
         const response = await fetch('http://localhost:3000/postData');
         const posts = await response.json();
 
-        // Filter posts by title or content
+        // Filters posts by title or content
         const filtered = posts.filter(post =>
             post.title.toLowerCase().includes(query) ||
             post.content.toLowerCase().includes(query)
@@ -31,6 +34,7 @@ async function showResults() {
             return;
         }
 
+        //event listener to the result div results to render their linked posts based on the id they represent
         resultsDiv.querySelectorAll('.resultItem').forEach(item => {
             item.addEventListener('click', function() {
                 const postId = this.getAttribute('data-id');
@@ -39,6 +43,7 @@ async function showResults() {
             });
         });
 
+        //result div markup stucture 
         resultsDiv.innerHTML = filtered.map(post => `
             <div class="resultItem" data-id="${post.id}">
                 <div class="resultItemTitle">${post.title}</div>
@@ -72,6 +77,7 @@ function hideResults(e) {
 document.addEventListener('mousedown', hideResults);
 document.querySelector('.searchButton').addEventListener('click', showResults);
 
+//this function sets the active classlist to the addBlog div using the plusHeight icon as a button toggle
 function toggleHeight(){
     const blogInputHeight = document.querySelector('.addBlog');
     const plusHeight = document.getElementById('plusHeight');
@@ -84,13 +90,14 @@ function toggleHeight(){
 
 toggleHeight();
 
+//gets the amount of words in the post content
 function getWordCount(text) {
     return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
 
 
-
+//this asynchronous function will take the input values from the form and submits it the db.json via the POST method
 async function submitBlogPost(e) {
     e.preventDefault();
 
@@ -99,6 +106,7 @@ async function submitBlogPost(e) {
     const image = document.getElementById('blogImage').value.trim();
     const content = document.getElementById('blogContent').value.trim();
 
+    //alert for when user has empty input values or failed to fill all of the input values 
     if (!title || !author || !content) {
         alert('Please fill in all required fields.');
         return;
@@ -119,6 +127,7 @@ async function submitBlogPost(e) {
             body: JSON.stringify(postData)
         });
 
+        //this sets the inputs to empty after a post is submitted , basically resetting it
         if (response.ok) {
             alert('Blog post submitted!');
             document.getElementById('blogTitle').value = '';
@@ -134,6 +143,7 @@ async function submitBlogPost(e) {
     }
 }
 
+//this asynchronous function will create a li element that gets appended into postList div , the post title and word count are displayed 
 async function renderPosts() {
     const response = await fetch('http://localhost:3000/postData');
     const posts = await response.json();
@@ -163,6 +173,8 @@ document.getElementById('submitBlog').addEventListener('click', submitBlogPost);
 
 let viewTimeout = null;
 
+
+//this function is to increment the view count after a user spends 2 minutes in the post 
 function setupViewCount(post) {
     clearTimeout(viewTimeout);
     viewTimeout = setTimeout(async () => {
@@ -178,6 +190,8 @@ function setupViewCount(post) {
     }, 120000); // 2 minutes = 120000 ms
 }
 
+
+//this function increments by one the like but also decrements it by onclick , the active classlist is applied onclick when incrementing and removedon reset
 function setupLikeButton(post) {
     const likeBtn = document.getElementById('like');
     const likeCount = document.getElementById('likeCount');
@@ -203,6 +217,7 @@ function setupLikeButton(post) {
     };
 }
 
+//this function indicates the date a post was made 
 function timeSince(dateString) {
     const now = new Date();
     const date = new Date(dateString);
@@ -217,6 +232,7 @@ function timeSince(dateString) {
     return `${days} days ago`;
 }
 
+//this will update the time since post was made, edited and updated
 function updateTimePassed(post) {
     const timeP = document.getElementById('timePassed');
     function update() {
@@ -236,7 +252,7 @@ function formatDate(dateString) {
     return `${d.getMonth() + 1}.${d.getFullYear()}`;
 }
 
-// Render a blog post in the view
+// Renders a blog post in the view
 async function renderBlogPost(postId) {
     try {
         const response = await fetch(`http://localhost:3000/postData/${postId}`);
@@ -269,7 +285,7 @@ document.getElementById('editPost').onclick = function() {
     document.getElementById('blogContentBody').focus();
 };
 
-// Save button
+// Save button that initializes the PATCH method and save any edits made the text in blogContentBody
 document.getElementById('saveedit').onclick = async function() {
     const updatedContent = document.getElementById('blogContentBody').textContent;
     await fetch(`http://localhost:3000/postData/${currentPostId}`, {
@@ -282,14 +298,14 @@ document.getElementById('saveedit').onclick = async function() {
     renderBlogPost(currentPostId);
 };
 
-// Cancel button
+// Cancel button will remove the contenteditable attribute applied to the blogBodyContent text
 document.getElementById('cancelEdit').onclick = function() {
     document.getElementById('blogContentBody').removeAttribute('contenteditable');
     document.querySelector('.hiddenActionButtons').style.display = 'none';
     renderBlogPost(currentPostId);
 };
 
-// Delete button
+// Delete button will perform a DELETE method on the post
 document.getElementById('deletePost').onclick = async function() {
     if (confirm('Delete this post?')) {
         await fetch(`http://localhost:3000/postData/${currentPostId}`, { method: 'DELETE' });
@@ -297,7 +313,7 @@ document.getElementById('deletePost').onclick = async function() {
     }
 };
 
-// Example: Show first post on page load
+//how first post on page load
 document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('http://localhost:3000/postData');
     const posts = await response.json();
